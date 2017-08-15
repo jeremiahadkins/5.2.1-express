@@ -24,15 +24,14 @@ app.get('/', (req, res) => {
 
 app.get('/item/:id', (req, res) => {
   let itemId = req.params.id;
+  let targetItem;
   data.forEach((item) => {
     if (item.id == itemId) {
-      //create a top level object
-      res.render('detail', {model: item});
-      return;
+      targetItem = item;
     }
   });
-  res.render('notFound');
-  // res.send('no comprende');
+  res.render('detail', {model: targetItem});
+  // res.render('notFound');
 });
 
 
