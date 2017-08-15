@@ -12,7 +12,8 @@ app.set('view engine', 'handlebars');
 const data = [
   {id: 1, name: 'Sadie', species: 'Dog'},
   {id: 2, name: 'Ozzy', species: 'Dog'},
-  {id: 3, name: 'Watson', species: 'Human'}
+  {id: 3, name: 'Watson', species: 'Human'},
+  {id: 4, name: 'Joel', species: 'who knows'}
 ];
 
 
@@ -30,19 +31,22 @@ app.get('/item/:id', (req, res) => {
       targetItem = item;
     }
   });
-  res.render('detail', {model: targetItem});
-  // res.render('notFound');
+  if (targetItem === undefined) {
+    res.render('notFound');
+  } else {
+    res.render('detail', {model: targetItem});
+  }
 });
 
 
-app.get('/name', (req, res) => {
-  res.send('jerry');
-});
+// app.get('/name', (req, res) => {
+//   res.send('jerry');
+// });
 
 
-app.get('/name/:myName', (req, res) => {
-  res.send('Why Hello there ' + req.params.myName);
-});
+// app.get('/name/:myName', (req, res) => {
+//   res.send('Why Hello there ' + req.params.myName);
+// });
 
 
 app.listen(3000, () => {
